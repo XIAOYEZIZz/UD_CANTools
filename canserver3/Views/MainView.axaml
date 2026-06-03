@@ -62,7 +62,7 @@
                        Icon="{StaticResource SemiIconSave}"
                        ToolTip.Tip="Save(Ctrl+S)" />
          <u:IconButton Command="{Binding SaveAsProjectCommand}"
-                       Content="Save21 as"
+                       Content="Save as"
                        Icon="{StaticResource SemiIconSaveStroked}"
                        ToolTip.Tip="Save as(Ctrl+Shift+S)" />
       </u:ToolBar>

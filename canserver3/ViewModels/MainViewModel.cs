@@ -23,7 +23,6 @@ namespace canserver3.ViewModels;
 
 public partial class MainViewModel : ObservableRecipient
 {
-    public Version Version { get; } = Version.Instance;
     [ObservableProperty]
     private string? _projectName;
     [ObservableProperty]

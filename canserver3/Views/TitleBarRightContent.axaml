@@ -12,22 +12,6 @@
    <Grid Width="{Binding $parent[DockPanel].Width}"
          HorizontalAlignment="Stretch"
          ColumnDefinitions="Auto,Auto">
-      <u:IconButton Classes="Tertiary"
-                    Icon="{StaticResource SemiIconInfoCircle}"
-                    Theme="{StaticResource BorderlessIconButton}">
-         <Button.Flyout>
-            <Flyout HorizontalOffset="20"
-                    Placement="BottomEdgeAlignedRight"
-                    VerticalOffset="0">
-               <u:Form LabelPosition="Left">
-                  <SelectableTextBlock u:FormItem.Label="字体:" Text="HarmonyOS Sans SC" />
-                  <SelectableTextBlock u:FormItem.Label="版本:" Text="{Binding Version.App_Version}" />
-                  <SelectableTextBlock u:FormItem.Label="scid:" Text="{Binding Version.Git_Version}" />
-
-               </u:Form>
-            </Flyout>
-         </Button.Flyout>
-      </u:IconButton>
       <u:IconButton Grid.Column="1"
                     Classes="Tertiary"
                     Command="{Binding ShowAppSettingDialogCommand}"

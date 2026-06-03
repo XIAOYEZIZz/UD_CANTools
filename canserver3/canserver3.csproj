@@ -24,12 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\M79X_CAN.dbc" />
-    <EmbeddedResource Include="Resources\M8T8_CANFD.dbc" />
-    <EmbeddedResource Include="Resources\M8T8_CAN.dbc" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.0.3" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.3" />
     <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.1" />
