@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>13.0</LangVersion>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <Platforms>AnyCPU;x86</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="Extensions\**" />
+    <Compile Remove="Extensions\**" />
+    <EmbeddedResource Remove="Extensions\**" />
+    <None Remove="Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="Assets\Icons.axaml" />
+    <AvaloniaXaml Remove="Assets\SimTableStyles.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\M79X_CAN.dbc" />
+    <EmbeddedResource Include="Resources\M8T8_CANFD.dbc" />
+    <EmbeddedResource Include="Resources\M8T8_CAN.dbc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.3" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.3" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Include="Irihi.Ursa.Themes.Semi" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <PackageReference Include="ObservableCollections" Version="3.3.4" />
+    <PackageReference Include="Semi.Avalonia" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Debug\Bmu\Bmu_M80X_DebugView.axaml.cs">
+      <DependentUpon>Bmu_M80X_DebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Bmu\Bmu_M79X_DebugView.axaml.cs">
+      <DependentUpon>Bmu_M79X_DebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Bmu\Bmu_T80X_DebugView.axaml.cs">
+      <DependentUpon>Bmu_T80X_DebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Bmu\Bmu_M81X_DebugView.axaml.cs">
+      <DependentUpon>Bmu_M81X_DebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\CANDebugView.axaml.cs">
+      <DependentUpon>CANDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\BmuSimuDebugView.axaml.cs">
+      <DependentUpon>BmuSimuDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\ShellFuncDebugView.axaml.cs">
+      <DependentUpon>ShellFuncDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Shell\BatterySimulator_OldDebugView.axaml.cs">
+      <DependentUpon>BatterySimulator_OldDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Shell\BatterySimulatorDebugView.axaml.cs">
+      <DependentUpon>BatterySimulatorDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Shell\SPIDebugView.axaml.cs">
+      <DependentUpon>SPIDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Shell\ShellCommandDebugView.axaml.cs">
+      <DependentUpon>ShellCommandDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Shell\BcuToolingModeDebugView.axaml.cs">
+      <DependentUpon>BcuToolingModeDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Shell\ToolingDebugView.axaml.cs">
+      <DependentUpon>ToolingDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\Shell\Tooling_NewDebugView.axaml.cs">
+      <DependentUpon>Tooling_NewDebugView.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Debug\DBCFuncDebugView.axaml.cs">
+      <DependentUpon>DBCFuncDebugView.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Update="Assets\Icons.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Assets\SimTableStyles.axaml">
+      <SubType>Designer</SubType>
+    </AvaloniaResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\Debugging\Shell\" />
+    <Folder Include="Views\Debugging\DBC\" />
+    <Folder Include="Views\Debugging\Shell\" />
+    <Folder Include="Views\Dialogs\" />
+  </ItemGroup>
+</Project>

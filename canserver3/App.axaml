@@ -1,0 +1,55 @@
+<Application x:Class="canserver3.App"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:iri="https://irihi.tech/shared"
+             xmlns:local="using:canserver3"
+             xmlns:semi="https://irihi.tech/semi"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:u-semi="https://irihi.tech/ursa/themes/semi"
+             xmlns:vm="using:canserver3.ViewModels"
+             x:DataType="vm:MainViewModel"
+             RequestedThemeVariant="Light">
+   <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
+   <Application.Resources>
+      <ResourceDictionary>
+         <ResourceDictionary.MergedDictionaries>
+            <ResourceInclude Source="/Assets/Icons.axaml" />
+         </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>
+   </Application.Resources>
+   <Application.Styles>
+      <semi:SemiTheme Locale="zh-CN" />
+      <semi:UrsaSemiTheme Locale="zh-CN" />
+      <semi:SemiPopupAnimations />
+
+      <Style Selector="u|StandardDialogWindow.Custom">
+
+         <Style Selector="^ /template/ Button#PART_OKButton">
+            <Setter Property="Content" Value="CUSTOM" />
+            <Setter Property="iri:ClassHelper.Classes" Value="Warning" />
+         </Style>
+      </Style>
+      <StyleInclude Source="avares://canserver3/Assets/SimTableStyles.axaml" />
+   </Application.Styles>
+   <TrayIcon.Icons>
+      <TrayIcons>
+         <TrayIcon Command="{Binding ShowWindowCommand}"
+                   Icon="/Assets/icon.ico"
+                   MacOSProperties.IsTemplateIcon="true"
+                   ToolTipText="Semi Avalonia Demo">
+            <TrayIcon.Menu>
+               <NativeMenu>
+                  <NativeMenuItem Command="{Binding StartSimulatorCommand}"
+                                  Header="启动"
+                                  IsEnabled="{Binding !IsSimulatorRunning}" />
+                  <NativeMenuItem Command="{Binding StopSimulatorCommand}"
+                                  Header="停止"
+                                  IsEnabled="{Binding IsSimulatorRunning}" />
+                  <NativeMenuItemSeparator />
+                  <NativeMenuItem Command="{Binding ExitApplicationCommand}" Header="退出" />
+               </NativeMenu>
+            </TrayIcon.Menu>
+         </TrayIcon>
+      </TrayIcons>
+   </TrayIcon.Icons>
+</Application>

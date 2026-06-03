@@ -1,0 +1,35 @@
+<UserControl x:Class="canserver3.Dialogs.CloseOrHideDialog"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dialogs="using:canserver3.Dialogs"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="400"
+             x:DataType="dialogs:CloseOrHideDialogViewModel"
+             mc:Ignorable="d">
+   <StackPanel MinWidth="300"
+               Margin="20"
+               Spacing="10">
+      <TextBlock FontSize="16"
+                 FontWeight="Bold"
+                 Text="Exit" />
+      <TextBlock Grid.Row="1"
+                 FontSize="15"
+                 Text="Exit？" />
+      <CheckBox Content="Default minimum" IsChecked="{Binding IsHide}" />
+      <Button Width="150"
+              HorizontalAlignment="Right"
+              Classes="Warning"
+              Command="{Binding HideCommand}"
+              Content="Minimum"
+              Theme="{DynamicResource SolidButton}" />
+      <Button Width="150"
+              HorizontalAlignment="Right"
+              Classes="Danger"
+              Command="{Binding ExitCommand}"
+              Content="Exit"
+              Theme="{DynamicResource SolidButton}" />
+
+   </StackPanel>
+</UserControl>

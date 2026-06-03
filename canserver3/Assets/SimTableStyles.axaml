@@ -1,0 +1,83 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+   <Design.PreviewWith>
+      <Border Padding="20">
+         <!--  Add Controls for Previewer Here  -->
+      </Border>
+   </Design.PreviewWith>
+
+   <!--  Add Styles Here  -->
+   <Style Selector="Border.table-cell">
+      <Setter Property="BorderBrush" Value="#f4f4f4" />
+      <Setter Property="BorderThickness" Value="1,1,2,2" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Stretch" />
+      <Setter Property="Margin" Value="0" />
+      <Setter Property="MinHeight" Value="30" />
+      <Setter Property="Background" Value="white" />
+   </Style>
+
+   <Style Selector="Border.table-cell &gt; TextBlock">
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+
+   </Style>
+   <Style Selector="Border.table-cell &gt; TextBox">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="Background" Value="White" />
+
+
+   </Style>
+   <Style Selector="Border.table-rowheader">
+      <Setter Property="BorderBrush" Value="#f4f4f4" />
+      <Setter Property="BorderThickness" Value="1,1,2,2" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Stretch" />
+      <Setter Property="Background" Value="#fff" />
+   </Style>
+   <Style Selector="Border.table-rowheader &gt; TextBlock">
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+   </Style>
+   <Style Selector="Border.table-columnheader">
+      <Setter Property="BorderBrush" Value="#eaeaea" />
+      <Setter Property="BorderThickness" Value="1,1,2,2" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="VerticalAlignment" Value="Stretch" />
+      <Setter Property="Background" Value="#f2f3f5" />
+   </Style>
+   <Style Selector="Border.table-columnheader &gt; TextBlock">
+      <Setter Property="Margin" Value="5" />
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="HorizontalAlignment" Value="Center" />
+      <Setter Property="VerticalAlignment" Value="Center" />
+   </Style>
+   <Style Selector="Button.BlueOutline">
+      <Setter Property="Theme" Value="{DynamicResource OutlineButton}" />
+   </Style>
+   <Style Selector="Button.BlueOutline">
+      <Setter Property="Theme" Value="{DynamicResource OutlineButton}" />
+      <Setter Property="BorderThickness" Value="1" />
+   </Style>
+   <Style Selector="Button.BlueOutline.SquareIcon">
+      <Setter Property="MinHeight" Value="10" />
+   </Style>
+   <Style Selector="Button.BlueOutline /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="#2F50EC" />
+      <Setter Property="Background" Value="#102F50EC" />
+   </Style>
+   <Style Selector="Button.BlueOutline:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="#2F50EC" />
+      <Setter Property="Background" Value="#202F50EC" />
+   </Style>
+   <Style Selector="Button.BlueOutline:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="#2F50EC" />
+      <Setter Property="Background" Value="#302F50EC" />
+   </Style>
+   <Style Selector="Button.BlueOutline:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="#502F50EC" />
+      <Setter Property="Background" Value="#102F50EC" />
+   </Style>
+</Styles>

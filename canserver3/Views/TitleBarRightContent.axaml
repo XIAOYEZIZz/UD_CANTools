@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="canserver3.Views.TitleBarRightContent"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:canserver3.ViewModels"
+             d:DesignHeight="50"
+             d:DesignWidth="300"
+             x:DataType="vm:MainViewModel"
+             mc:Ignorable="d">
+   <Grid Width="{Binding $parent[DockPanel].Width}"
+         HorizontalAlignment="Stretch"
+         ColumnDefinitions="Auto,Auto">
+      <u:IconButton Classes="Tertiary"
+                    Icon="{StaticResource SemiIconInfoCircle}"
+                    Theme="{StaticResource BorderlessIconButton}">
+         <Button.Flyout>
+            <Flyout HorizontalOffset="20"
+                    Placement="BottomEdgeAlignedRight"
+                    VerticalOffset="0">
+               <u:Form LabelPosition="Left">
+                  <SelectableTextBlock u:FormItem.Label="字体:" Text="HarmonyOS Sans SC" />
+                  <SelectableTextBlock u:FormItem.Label="版本:" Text="{Binding Version.App_Version}" />
+                  <SelectableTextBlock u:FormItem.Label="scid:" Text="{Binding Version.Git_Version}" />
+
+               </u:Form>
+            </Flyout>
+         </Button.Flyout>
+      </u:IconButton>
+      <u:IconButton Grid.Column="1"
+                    Classes="Tertiary"
+                    Command="{Binding ShowAppSettingDialogCommand}"
+                    Icon="{StaticResource SemiIconSetting}"
+                    IsEnabled="{Binding !IsSimulatorRunning}"
+                    Theme="{StaticResource BorderlessIconButton}" />
+   </Grid>
+</UserControl>

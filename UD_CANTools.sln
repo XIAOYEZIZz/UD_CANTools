@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11723.189 insiders
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "canserver3", "canserver3\canserver3.csproj", "{066C121A-738D-FBB2-2509-D9892203D4CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "canserver3.Desktop", "canserver3.Desktop\canserver3.Desktop.csproj", "{5F27B148-7821-C60A-F90C-496C657A0857}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Debug|x86.ActiveCfg = Debug|x86
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Debug|x86.Build.0 = Debug|x86
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Release|x86.ActiveCfg = Release|x86
+		{066C121A-738D-FBB2-2509-D9892203D4CC}.Release|x86.Build.0 = Release|x86
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Debug|x86.ActiveCfg = Debug|x86
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Debug|x86.Build.0 = Debug|x86
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Release|x86.ActiveCfg = Release|x86
+		{5F27B148-7821-C60A-F90C-496C657A0857}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36E29A13-01F6-4C8A-82EA-BAB8BBB04DB1}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,79 @@
+<UserControl x:Class="canserver3.Views.MainView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:canserver3.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:views="clr-namespace:canserver3.Views"
+             xmlns:vm="clr-namespace:canserver3.ViewModels"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:DataType="vm:MainViewModel"
+             mc:Ignorable="d">
+   <UserControl.Resources>
+      <converters:SubtractConverter x:Key="SubtractConverter" />
+      <converters:PathNameConverter x:Key="PathNameConverter" />
+   </UserControl.Resources>
+   <Design.DataContext>
+      <!--
+         This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)
+      -->
+      <vm:MainViewModel />
+   </Design.DataContext>
+   <Grid ColumnDefinitions="Auto,*"
+         RowDefinitions="Auto,*"
+         ShowGridLines="False">
+      <Border Grid.RowSpan="2"
+              Padding="8,4"
+              VerticalAlignment="Stretch"
+              Theme="{DynamicResource CardBorder}">
+         <views:MenuView DataContext="{Binding Menu}" DockPanel.Dock="Left" />
+      </Border>
+      <TextBlock Grid.ColumnSpan="2"
+                 Margin="0,5,0,0"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Top"
+                 Background="Transparent">
+         <TextBlock.Text>
+            <MultiBinding Converter="{StaticResource PathNameConverter}">
+               <Binding Path="ProjectPath" />
+               <Binding Path="ProjectName" />
+            </MultiBinding>
+         </TextBlock.Text>
+      </TextBlock>
+      <u:ToolBar Grid.Column="1"
+                 Margin="0,30,0,0"
+                 IsEnabled="{Binding !IsSimulatorRunning}">
+         <u:PopConfirm ConfirmCommand="{Binding NewProjectCommand}" PopupHeader="当前项目配置将被清空，确定新建? ">
+            <u:IconButton Content="New"
+                          Icon="{StaticResource SemiIconFile}"
+                          ToolTip.Tip="New(Ctrl+N)" />
+         </u:PopConfirm>
+         <u:ToolBarSeparator />
+         <u:IconButton Command="{Binding OpenProjectCommand}"
+                       Content="Open"
+                       Icon="{StaticResource SemiIconFolderOpen}"
+                       ToolTip.Tip="Open(Ctrl+O)" />
+         <u:ToolBarSeparator />
+         <u:IconButton Command="{Binding SaveProjectCommand}"
+                       Content="Save"
+                       Icon="{StaticResource SemiIconSave}"
+                       ToolTip.Tip="Save(Ctrl+S)" />
+         <u:IconButton Command="{Binding SaveAsProjectCommand}"
+                       Content="Save21 as"
+                       Icon="{StaticResource SemiIconSaveStroked}"
+                       ToolTip.Tip="Save as(Ctrl+Shift+S)" />
+      </u:ToolBar>
+      <Border Grid.Row="1"
+              Grid.Column="1"
+              Background="#F2F2F2">
+         <TransitioningContentControl Margin="10"
+                                      Padding="5"
+                                      Background="White"
+                                      Content="{Binding Content}" />
+      </Border>
+   </Grid>
+
+</UserControl>

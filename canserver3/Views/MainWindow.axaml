@@ -1,0 +1,47 @@
+<u:UrsaWindow x:Class="canserver3.Views.MainWindow"
+              xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:helpers="clr-namespace:Irihi.Avalonia.Shared.Helpers;assembly=Irihi.Avalonia.Shared"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:u="https://irihi.tech/ursa"
+              xmlns:views="clr-namespace:canserver3.Views"
+              xmlns:vm="using:canserver3.ViewModels"
+              Title="canserver3"
+              Width="1200"
+              Height="700"
+              d:DesignHeight="600"
+              d:DesignWidth="1000"
+              x:DataType="vm:MainViewModel"
+              ExtendClientAreaToDecorationsHint="True"
+              Icon="/Assets/icon.ico"
+              IsManagedResizerVisible="True"
+              WindowDecorations="Full"
+              WindowStartupLocation="CenterScreen"
+              mc:Ignorable="d">
+   <Window.KeyBindings>
+      <KeyBinding Command="{Binding NewProjectCommand}" Gesture="Ctrl+N" />
+      <KeyBinding Command="{Binding OpenProjectCommand}" Gesture="Ctrl+O" />
+      <KeyBinding Command="{Binding SaveProjectCommand}" Gesture="Ctrl+S" />
+      <KeyBinding Command="{Binding SaveAsProjectCommand}" Gesture="Ctrl+Shift+S" />
+   </Window.KeyBindings>
+   <u:UrsaWindow.RightContent>
+      <views:TitleBarRightContent DataContext="{Binding}" />
+   </u:UrsaWindow.RightContent>
+   <u:UrsaWindow.LeftContent>
+      <StackPanel Margin="10,0" Orientation="Horizontal">
+         <u:IconButton Classes="Success"
+                       Command="{Binding StartSimulatorCommand}"
+                       Icon="{StaticResource SemiIconPlay}"
+                       IsEnabled="{Binding !IsSimulatorRunning}"
+                       Theme="{StaticResource BorderlessIconButton}" />
+         <u:IconButton Grid.Column="1"
+                       Classes="Danger"
+                       Command="{Binding StopSimulatorCommand}"
+                       Icon="{StaticResource SemiIconStop}"
+                       IsEnabled="{Binding IsSimulatorRunning}"
+                       Theme="{StaticResource BorderlessIconButton}" />
+      </StackPanel>
+   </u:UrsaWindow.LeftContent>
+   <views:MainView />
+</u:UrsaWindow>

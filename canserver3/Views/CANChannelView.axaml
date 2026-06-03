@@ -1,0 +1,93 @@
+<UserControl x:Class="canserver3.Views.CANChannelView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:canserver3.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:datagriddragdrop="using:Avalonia.Controls.DataGridDragDrop"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:canserver3.ViewModels"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             x:DataType="vm:CANChannelViewModel"
+             mc:Ignorable="d">
+   <UserControl.Resources>
+      <converters:RatioConverter x:Key="RatioConverter" />
+   </UserControl.Resources>
+   <Grid RowDefinitions="Auto,*,Auto">
+      <StackPanel Orientation="Horizontal" Spacing="5">
+         <u:IconButton Content="New"
+                       Icon="{StaticResource SemiIconPlus}"
+                       ToolTip.Tip="New" />
+         <u:IconButton Content="Edit"
+                       Icon="{StaticResource SemiIconEdit}"
+                       ToolTip.Tip="Edit" />
+      </StackPanel>
+      <!--<DataGrid Grid.Row="1"
+                AutoGenerateColumns="False"
+                CanUserAddRows="False"
+                CanUserReorderRows="True"
+                CanUserResizeColumns="True"
+                CanUserSortColumns="False"
+                ColumnDefinitionsSource="{Binding ChannelItemsColumnDefinitions}"
+                DoubleTapped="DataGrid_DoubleTapped"
+                IsReadOnly="False"
+                ItemsSource="{Binding ChannelItems}"
+                RowDragHandle="RowHeaderAndRow"
+                SelectedItem="{Binding SelectedChannelItem}"
+                SelectionMode="Single">
+         <DataGrid.Styles>
+            <Style Selector="DataGridColumnHeader PathIcon#SortIcon">
+               <Setter Property="IsVisible" Value="False" />
+            </Style>
+            <Style Selector="Grid#PART_ColumnHeaderRoot[Name=PART_ColumnHeaderRoot] Grid">
+               <Setter Property="Margin" Value="0" />
+            </Style>
+            <Style Selector="CheckBox">
+               <Setter Property="VerticalAlignment" Value="Center" />
+               <Setter Property="HorizontalAlignment" Value="Center" />
+               <Setter Property="Padding" Value="0,0,0,0" />
+            </Style>
+            <Style Selector="TextBlock">
+               <Setter Property="VerticalAlignment" Value="Center" />
+               <Setter Property="HorizontalAlignment" Value="Stretch" />
+               <Setter Property="TextAlignment" Value="Center" />
+               <Setter Property="Padding" Value="0,0,0,0" />
+            </Style>
+            <Style Selector="DataGrid DataGridRow:nth-last-child(2n)">
+               <Setter Property="Background" Value="{DynamicResource SemiColorFill0}" />
+            </Style>
+         </DataGrid.Styles>
+         <DataGrid.Resources>
+            <DataTemplate x:Key="CANIndexCell" x:DataType="vm:CANChannelItemViewModel">
+               <TextBlock Text="{Binding CANIndexString}" />
+            </DataTemplate>
+      -->
+      <!--  Defines a named template for the column  -->
+      <!--
+            <DataTemplate x:Key="CheckBoxCell" x:DataType="vm:CANChannelItemViewModel">
+               <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsEnable}" />
+            </DataTemplate>
+            <DataTemplate x:Key="DeviceTypeCell" x:DataType="vm:CANChannelItemViewModel">
+               <TextBlock Text="{Binding DeviceType}" />
+            </DataTemplate>
+            <DataTemplate x:Key="DeviceIndexCell" x:DataType="vm:CANChannelItemViewModel">
+               <TextBlock Text="{Binding DeviceIndex}" />
+            </DataTemplate>
+            <DataTemplate x:Key="ChannelIndexCell" x:DataType="vm:CANChannelItemViewModel">
+               <TextBlock Text="{Binding ChannelIndex}" />
+            </DataTemplate>
+            <DataTemplate x:Key="IsCANFDCell" x:DataType="vm:CANChannelItemViewModel">
+               <CheckBox IsChecked="{Binding SupportCANFD}" IsHitTestVisible="False" />
+            </DataTemplate>
+            <DataTemplate x:Key="BaudrateCell" x:DataType="vm:CANChannelItemViewModel">
+               <TextBlock Text="{Binding Baudrate}" />
+            </DataTemplate>
+            <DataTemplate x:Key="DescriptionCell" x:DataType="vm:CANChannelItemViewModel">
+               <TextBlock Text="{Binding Description}" />
+            </DataTemplate>
+         </DataGrid.Resources>
+      </DataGrid>-->
+   </Grid>
+
+</UserControl>

@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
+    One for Windows with net8.0-windows TFM, one for MacOS with net8.0-macos and one with net8.0 TFM for Linux.-->
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>canserver3.0</AssemblyName>
+    <AssemblyTitle>canserver3.0</AssemblyTitle>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <Company />
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Authors>UDAN</Authors>
+    <Version>3.0.2</Version>
+    <!-- 启用程序集剪裁 -->
+    <PublishTrimmed>true</PublishTrimmed>
+    <!-- 设置剪裁模式为 partial（平衡体积与安全性） -->
+    <TrimMode>partial</TrimMode>
+    <Platforms>AnyCPU;x86</Platforms>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <HotAvaloniaMode>Balance</HotAvaloniaMode>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Nullable>enable</Nullable>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <WindowsSupportedOSPlatformVersion>7.0</WindowsSupportedOSPlatformVersion>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Nullable>enable</Nullable>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <WindowsSupportedOSPlatformVersion>7.0</WindowsSupportedOSPlatformVersion>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Nullable>enable</Nullable>
+    <PublishAot>true</PublishAot>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <WindowsSupportedOSPlatformVersion>7.0</WindowsSupportedOSPlatformVersion>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Markup.Xaml.Loader" Version="12.0.3" PrivateAssets="All" />
+    <PackageReference Include="HotAvalonia" Version="3.1.0" PrivateAssets="All" Publish="True" />
+    <PackageReference Include="VC-LTL" Version="5.3.1" />
+    <PackageReference Include="YY-Thunks" Version="1.2.1" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.0.3" />
+
+    <!-- 主程序 DLLs -->
+    <Content Include="x86_dlls\**" CopyToOutputDirectory="PreserveNewest" Condition="'$(Platform)' == 'x86' OR '$(RuntimeIdentifier)' == 'win-x86'">
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+    </Content>
+
+    <!-- kerneldlls 目录 -->
+    <Content Include="x86_kerneldlls\**" CopyToOutputDirectory="PreserveNewest" Condition="'$(Platform)' == 'x86' OR '$(RuntimeIdentifier)' == 'win-x86'">
+      <TargetPath>kerneldlls\%(Filename)%(Extension)</TargetPath>
+    </Content>
+
+    <!-- kerneldlls\devices_property 目录 -->
+    <Content Include="x86_kerneldlls_devices_property\**" CopyToOutputDirectory="PreserveNewest" Condition="'$(Platform)' == 'x86' OR '$(RuntimeIdentifier)' == 'win-x86'">
+      <TargetPath>kerneldlls\devices_property\%(Filename)%(Extension)</TargetPath>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\canserver3\canserver3.csproj" />
+  </ItemGroup>
+</Project>

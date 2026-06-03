@@ -1,0 +1,133 @@
+<UserControl x:Class="canserver3.Views.MenuView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:canserver3.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iri="https://irihi.tech/shared"
+             xmlns:local="using:canserver3"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:u="https://irihi.tech/ursa"
+             xmlns:vm="using:canserver3.ViewModels"
+             d:DesignHeight="450"
+             d:DesignWidth="300"
+             x:DataType="vm:MenuViewModel"
+             mc:Ignorable="d">
+   <UserControl.Resources>
+      <converters:IconNameToPathConverter x:Key="IconConverter" />
+   </UserControl.Resources>
+   <u:NavMenu Name="menu"
+              CommandBinding="{Binding ActivateCommand}"
+              ExpandWidth="180"
+              IconBinding="{Binding MenuIconName}"
+              ItemsSource="{Binding MenuItems}"
+              SelectedItem="{Binding SelectedMenuItem}">
+      <u:NavMenu.Styles>
+         <Style x:DataType="vm:MenuItemViewModel" Selector="u|NavMenuItem">
+            <Setter Property="IsSeparator" Value="{Binding IsSeparator}" />
+         </Style>
+      </u:NavMenu.Styles>
+      <u:NavMenu.IconTemplate>
+         <DataTemplate x:DataType="x:String">
+            <u:TwoTonePathIcon Width="16"
+                               Height="16"
+                               ActiveForeground="{DynamicResource SemiBlue5}"
+                               ActiveStrokeBrush="{DynamicResource SemiBlue5}"
+                               Data="{Binding Converter={StaticResource IconConverter}}"
+                               Foreground="{DynamicResource SemiGrey5}"
+                               IsActive="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=u:NavMenuItem}, Path=IsHighlighted, Mode=TwoWay}"
+                               StrokeBrush="{DynamicResource SemiGrey5}" />
+         </DataTemplate>
+      </u:NavMenu.IconTemplate>
+
+      <u:NavMenu.HeaderTemplate>
+         <local:MenuItemTemplateSelector>
+            <local:MenuItemTemplateSelector.DefaultTemplate>
+               <DataTemplate x:DataType="vm:MenuItemViewModel">
+                  <StackPanel Orientation="Horizontal" Spacing="{StaticResource SemiSpacingExtraTight}">
+                     <TextBlock HorizontalAlignment="Left" Text="{Binding MenuHeader}" />
+                  </StackPanel>
+               </DataTemplate>
+            </local:MenuItemTemplateSelector.DefaultTemplate>
+            <local:MenuItemTemplateSelector.CANChannelTemplate>
+               <DataTemplate x:DataType="vm:CANChannelMenuItemViewModel">
+                  <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" ToolTip.Tip="{Binding Description}">
+                     <TextBlock Margin="0,0,5,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Text="{Binding MenuHeader}" />
+                     <u:Badge Grid.Column="1"
+                              HorizontalAlignment="Left"
+                              Classes.Danger="{Binding !ChannelInited}"
+                              Classes.Success="{Binding ChannelInited}"
+                              Dot="True" />
+                     <u:IconButton Grid.Column="2"
+                                   Margin="0"
+                                   VerticalAlignment="Center"
+                                   Classes="Small"
+                                   Icon="{StaticResource SemiIconLoopTextStroked}"
+                                   Theme="{StaticResource BorderlessIconButton}"
+                                   ToolTip.Tip="转发报文">
+                        <u:IconButton.Flyout>
+                           <Flyout Placement="BottomEdgeAlignedLeft">
+                              <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto">
+                                 <u:Divider Grid.ColumnSpan="2" Content="其他通道" />
+                                 <ItemsControl Grid.Row="1"
+                                               Grid.ColumnSpan="2"
+                                               ItemsSource="{Binding ForwardCanFrameItems}">
+                                    <ItemsControl.ItemTemplate>
+                                       <DataTemplate x:DataType="vm:ForwardCanFrameViewModel">
+                                          <CheckBox Margin="3"
+                                                    Command="{Binding ForwardCanFrameCommand}"
+                                                    Content="{Binding ToCanIndex}"
+                                                    IsChecked="{Binding Forwarded}" />
+                                       </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                 </ItemsControl>
+                                 <u:Divider Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                            Content="PCAN-Explorer" />
+                                 <CheckBox Grid.Row="3"
+                                           Margin="3"
+                                           VerticalAlignment="Center"
+                                           IsChecked="{Binding EnablePCAN}" />
+                                 <TextBox Grid.Row="3"
+                                          Grid.Column="1"
+                                          Text="{Binding PcanVirtualNetName}" />
+                              </Grid>
+                           </Flyout>
+                        </u:IconButton.Flyout>
+                     </u:IconButton>
+
+
+                     <CheckBox Grid.Column="4"
+                               Margin="2,0,0,0"
+                               VerticalAlignment="Center"
+                               IsChecked="{Binding ChannelEnable}"
+                               ToolTip.Tip="使能/禁能" />
+                  </Grid>
+               </DataTemplate>
+            </local:MenuItemTemplateSelector.CANChannelTemplate>
+         </local:MenuItemTemplateSelector>
+      </u:NavMenu.HeaderTemplate>
+
+      <u:NavMenu.Header>
+         <DockPanel Margin="4,30,4,8" HorizontalAlignment="Center">
+            <Panel VerticalAlignment="Center"
+                   u:NavMenu.CanToggle="True"
+                   Background="Transparent"
+                   DockPanel.Dock="Left">
+               <u:Avatar Classes="Orange Default"
+                         Click="Avatar_Click"
+                         Content="优旦" />
+            </Panel>
+            <TextBlock Margin="3,0,0,0"
+                       VerticalAlignment="Center"
+                       Classes="H4"
+                       IsVisible="{Binding !#menu.IsHorizontalCollapsed}"
+                       PointerPressed="TextBlock_PointerPressed"
+                       Text="CANServer"
+                       Theme="{DynamicResource TitleTextBlock}" />
+         </DockPanel>
+      </u:NavMenu.Header>
+   </u:NavMenu>
+</UserControl>
