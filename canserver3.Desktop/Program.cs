@@ -18,7 +18,6 @@ class Program
     {
         return AppBuilder.Configure<App>()
             .UsePlatformDetect()
-            .With(new Win32PlatformOptions())
             .LogToTrace();
     }
 }

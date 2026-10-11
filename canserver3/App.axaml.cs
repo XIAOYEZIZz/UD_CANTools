@@ -26,10 +26,15 @@ public partial class App : Application
         Resources["DefaultFontFamily"] = null;
         Resources["SemiFontFamilyRegular"] = null;
 #if DEBUG
-        AllocConsole(); // 显示控制台窗口
+        if (OperatingSystem.IsWindows())
+        {
+            AllocConsole(); // 显示控制台窗口
+        }
         this.AttachDeveloperTools();
 #endif
-        string baseFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+        string baseFolder = Environment.GetFolderPath(OperatingSystem.IsWindows()
+            ? Environment.SpecialFolder.CommonApplicationData
+            : Environment.SpecialFolder.LocalApplicationData);
         BaseUpperFolder = Path.Combine(baseFolder, "UDANTech", "canserver3");//注意Nlog中的配置同步
         try
         {
