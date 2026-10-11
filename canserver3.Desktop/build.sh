@@ -1,52 +1,24 @@
 #!/bin/sh
 
-set -e
+set -eu
 
-generate_version() {
-    cd ..
-    cd UD_Protocol
-    sh GenerateVersion.sh
-    cd ..
-    cd canserver3
-	gitver=`git rev-parse HEAD`
-	cat >Version.cs << EOF
-using System;
-namespace canserver3;
-public sealed class Version
-{
-    private static readonly Lazy<Version> _instance =
-            new Lazy<Version>(() => new Version());
-    public static Version Instance => _instance.Value;
-    public static string App_Version { get; } = "3.0.5";
-    public static string Git_Version { get; } = "${gitver}";
-}
-EOF
-}
+project_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+cd "$project_dir"
 
-[ -f Version.cs ] || generate_version
-
-if [ "$1" = "ver" ] ; then
-generate_version
-elif [ "$1" = "x64" ] ; then
-cd ..
-cd canserver3.Desktop
-rm -rf ./bin/Release/net10.0-windows/win-x64/publish
-generate_version
-cd ..
-cd canserver3.Desktop
-dotnet publish -c Release -r win-x64 --self-contained true
-cd .\\bin\\Release\\net10.0-windows\\win-x64\\publish
-rm -f *.pdb
-explorer .
-else
-cd ..
-cd canserver3.Desktop
-rm -rf ./bin/Release/net10.0-windows/win-x86/publish
-generate_version
-cd ..
-cd canserver3.Desktop
-dotnet publish -c Release -r win-x86 --self-contained true
-cd .\\bin\\Release\\net10.0-windows\\win-x86\\publish
-rm -f *.pdb
-explorer .
+runtime=${1:-}
+if [ -z "$runtime" ]; then
+    case "$(uname -s)-$(uname -m)" in
+        Darwin-arm64) runtime=osx-arm64 ;;
+        Darwin-x86_64) runtime=osx-x64 ;;
+        *) echo "Usage: sh build.sh {osx-arm64|osx-x64|win-x86|win-x64}" >&2; exit 1 ;;
+    esac
 fi
+
+case "$runtime" in
+    osx-arm64|osx-x64) ;;
+    x86|win-x86) runtime=win-x86 ;;
+    x64|win-x64) runtime=win-x64 ;;
+    *) echo "Unsupported runtime: $runtime" >&2; exit 1 ;;
+esac
+
+dotnet publish "$project_dir/canserver3.Desktop.csproj" -c Release -r "$runtime" --self-contained true
